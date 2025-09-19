@@ -16,6 +16,9 @@ class WaterDropNavBar extends StatefulWidget {
   /// Current selected index of the bar item.
   final int selectedIndex;
 
+  /// Previous selected index of the bar item.
+  final int previousIndex;
+
   /// List of bar items that shows horizontally, Minimum 2 and maximum 4 items.
   final List<BarItem> barItems;
 
@@ -35,6 +38,7 @@ class WaterDropNavBar extends StatefulWidget {
   const WaterDropNavBar({
     required this.barItems,
     required this.selectedIndex,
+    required this.previousIndex,
     required this.onItemSelected,
     this.bottomPadding,
     this.backgroundColor = Colors.white,
@@ -53,7 +57,7 @@ class WaterDropNavBar extends StatefulWidget {
 
 class _WaterDropNavBarState extends State<WaterDropNavBar>
     with TickerProviderStateMixin {
-  int _previousIndex = 0;
+  //int _previousIndex = 0;
 
   late AnimationController _controller;
 
@@ -79,7 +83,7 @@ class _WaterDropNavBarState extends State<WaterDropNavBar>
 
       _controller.forward(from: 0.0);
 
-      _previousIndex = widget.selectedIndex;
+      //_previousIndex = widget.selectedIndex;
     }
 
     // if (selectedIndex == index || _controller.isAnimating) {
@@ -140,7 +144,7 @@ class _WaterDropNavBarState extends State<WaterDropNavBar>
             itemCount: items.length,
             controller: _controller,
             selectedIndex: selectedIndex,
-            previousIndex: _previousIndex,
+            previousIndex: widget.previousIndex,
             color: dropColor,
           )
         ],
