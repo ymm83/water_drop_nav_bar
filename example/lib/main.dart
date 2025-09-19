@@ -33,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final Color navigationBarColor = Colors.white;
   int selectedIndex = 0;
+  int previousIndex = 0;
   late PageController pageController;
   @override
   void initState() {
@@ -93,6 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: navigationBarColor,
           onItemSelected: (int index) {
             setState(() {
+              previousIndex = selectedIndex;
               selectedIndex = index;
             });
             pageController.animateToPage(selectedIndex,
@@ -100,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 curve: Curves.easeOutQuad);
           },
           selectedIndex: selectedIndex,
+          previousIndex: previousIndex,
           barItems: <BarItem>[
             BarItem(
               filledIcon: Icons.bookmark_rounded,

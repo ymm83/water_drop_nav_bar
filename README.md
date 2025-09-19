@@ -57,6 +57,10 @@ selectedIndex → `int`
 - Current selected index of the bar item.\
  *required*
 
+ previousIndex → `int`
+- Previous selected index of the bar item. Fix always 0. \
+ *required*
+
 backgroundColor → `Color`
 - Background Color of the bar.\
 *optional [Colors.white]*
@@ -99,6 +103,7 @@ bottomPadding → `double`
         backgroundColor: Colors.white,
         onItemSelected: (index) {
           setState(() {
+            previousIndex = selectedIndex
             selectedIndex = index;
           });
           pageController.animateToPage(selectedIndex,
@@ -106,6 +111,7 @@ bottomPadding → `double`
               curve: Curves.easeOutQuad);
         },
         selectedIndex: selectedIndex,
+        previousIndex: previousIndex
         barItems: [
           BarItem(
             filledIcon: Icons.bookmark_rounded,
